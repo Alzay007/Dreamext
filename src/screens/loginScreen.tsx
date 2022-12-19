@@ -5,7 +5,6 @@ import { CustomInput } from '../components/customInput';
 import { User } from '../types/user';
 import { usersData } from '../api/users';
 import { useNavigation } from '@react-navigation/native';
-import HomeScreen from './homeScreen';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
