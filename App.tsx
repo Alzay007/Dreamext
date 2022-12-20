@@ -1,26 +1,18 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { StyleSheet, Image } from 'react-native';
+import { StyleSheet } from 'react-native';
 import LoginScreen from './src/screens/loginScreen';
 import HomeScreen from './src/screens/homeScreen';
+import { HeaderBar } from './src/components/headerBar';
 
 const Stack = createNativeStackNavigator();
-
-function LogoTitle() {
-  return (
-    <Image
-      style={{ width: 30, height: 30 }}
-      source={require('./assets/icons/logout.svg')}
-    />
-  );
-}
 
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Login"
+          name="LoginScreen"
           component={LoginScreen}
           options={{
             title: 'Login Screen',
@@ -32,7 +24,7 @@ export default function App() {
           options={{
             title: 'Home Screen',
             headerBackVisible: false,
-            headerTitle: (props: any) => <LogoTitle {...props} />,
+            headerTitle: (props: any) => <HeaderBar {...props} />,
           }}
         />
       </Stack.Navigator>
@@ -41,16 +33,4 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'black',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  text: {
-    color: 'red',
-    fontWeigth: 'bold',
-    fontSize: 24,
-  }
 });

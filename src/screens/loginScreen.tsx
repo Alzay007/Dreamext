@@ -7,7 +7,7 @@ import { usersData } from '../api/users';
 import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
 
   const [users, setUsers] = useState<User[]>([])
   const [email, setEmail] = useState<string>('');
@@ -22,6 +22,7 @@ const LoginScreen = () => {
   const onSignInPressed = () => {
     if (users.find(user => user.login === email && user.password === password)) {
       navigation.navigate('HomeScreen')
+      setPassword('')
     } else {
       setPassword('')
       setError(true)

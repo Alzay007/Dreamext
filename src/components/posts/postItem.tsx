@@ -3,12 +3,14 @@ import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 interface Props {
   title: string,
   body: string,
-  showModal: () => void;
-}
+  userId: number,
+  showModal: (value: number) => void;
+};
 
 export const PostItem: React.FC<Props> = ({
   title,
   body,
+  userId,
   showModal,
 }) => {
   return (
@@ -17,7 +19,7 @@ export const PostItem: React.FC<Props> = ({
       <Text style={styles.itemDesc}>{body}</Text>
       <TouchableOpacity
         style={styles.button}
-        onPress={showModal}
+        onPress={() => showModal(userId)}
       >
         <Text>Comments</Text>
       </TouchableOpacity>

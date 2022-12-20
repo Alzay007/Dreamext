@@ -6,7 +6,7 @@ function wait(delay: number) {
   });
 }
 
-type RequestMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE';
+type RequestMethod = 'GET';
 
 function request<T>(
   url: string,
@@ -22,7 +22,7 @@ function request<T>(
     };
   }
 
-  return wait(2000)
+  return wait(300)
     .then(() => fetch(BASE_URL + url, options))
     .then(response => {
       if (!response.ok) {
