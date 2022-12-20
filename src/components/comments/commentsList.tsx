@@ -10,14 +10,11 @@ export const CommentsList: React.FC<Props> = ({ comments }) => {
 
   return (
     <FlatList
+      style={{ padding: 10 }}
       data={comments}
       initialNumToRender={40}
       renderItem={({ item }) => (
-        <CommentItem
-          name={item.name}
-          email={item.email}
-          body={item.body}
-        />
+        <CommentItem name={item.name} />
       )}
     />
   );

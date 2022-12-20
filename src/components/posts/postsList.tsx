@@ -11,7 +11,6 @@ export const PostsList: React.FC<Props> = ({ posts, showModal }) => {
   return (
     <FlatList
       data={posts}
-      initialNumToRender={40}
       renderItem={({ item }) => (
         <PostItem
           userId={item.userId}

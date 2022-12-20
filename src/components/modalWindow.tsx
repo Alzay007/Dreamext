@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Modal, StyleSheet, View } from "react-native";
+import { StyleSheet, View, Modal, Text, TouchableOpacity } from "react-native";
 import { CommentsList } from "./comments/commentsList";
 import { Comment } from "../types/comment";
 import { getPostComments } from "../api/comments";
@@ -40,13 +40,20 @@ const ModalWindow: React.FC<Props> = ({
       <Modal
         animationType="slide"
         transparent={true}
-        onRequestClose={() => hideModal}
+        onRequestClose={hideModal}
+        onDismiss={hideModal}
       >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            {isLoading && <Loader />}
-            <CommentsList comments={comments} />
-          </View>
+        <View style={styles.modalView}>
+          {isLoading && <Loader />}
+          {!isLoading && (
+            <TouchableOpacity
+              style={styles.button}
+              onPress={hideModal}
+            >
+              <Text style={{ color: 'black' }}>X</Text>
+            </TouchableOpacity>
+          )}
+          <CommentsList comments={comments} />
         </View>
       </Modal>
     </View>
@@ -54,17 +61,17 @@ const ModalWindow: React.FC<Props> = ({
 };
 const styles = StyleSheet.create({
   centeredView: {
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 22,
+    position: 'relative',
   },
   modalView: {
-    display: 'flex',
-    justifyContent: 'center',
-    margin: 20,
+    position: 'absolute',
+    bottom: 180,
+    left: 37,
+    justifyContent: "center",
+    height: 360,
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 35,
+    padding: 10,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -75,6 +82,17 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5
   },
+  button: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 30,
+    width: 30,
+    top: 10,
+    right: 10,
+    borderWidth: 1,
+    borderRadius: 50,
+  }
 });
 
 export default ModalWindow;

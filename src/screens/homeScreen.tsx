@@ -16,14 +16,16 @@ const HomeScreen = () => {
 
   const showModal = (userId: number) => {
     setSelectedPost(userId)
-    console.log(selectedPost)
   }
 
   const showSnackBar = () => {
     setVisibleSnackBar(true)
+    setError(true)
   }
 
-  const hideModal = () => setSelectedPost(0);
+  const hideModal = () => {
+    setSelectedPost(0);
+  }
 
   const reloadData = async () => {
     setError(false)
@@ -34,6 +36,7 @@ const HomeScreen = () => {
 
       setPosts(receivedPosts);
       setIsLoading(false)
+      setError(false)
     } catch (error) {
       setError(true);
       setVisibleSnackBar(true)
@@ -80,7 +83,7 @@ const HomeScreen = () => {
         />
       )}
 
-      <PostsList posts={posts} showModal={showModal} />
+      {!error && <PostsList posts={posts} showModal={showModal} />}
     </View>
   );
 }
